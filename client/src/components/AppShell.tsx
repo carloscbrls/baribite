@@ -42,38 +42,38 @@ export function AppShell({
         ) : null}
       </header>
 
-      {/* Page content */}
-      <main className="flex-1 px-4 pb-28 pt-4">{children}</main>
+      {/* Page content — padding clears the combined emergency strip + nav */}
+      <main className="flex-1 px-4 pb-36 pt-4">{children}</main>
 
-      {/* Persistent emergency strip above the nav */}
-      <Link
-        href="/emergency"
-        data-testid="link-emergency-strip"
-        className="fixed inset-x-0 bottom-[4.25rem] z-20 mx-auto flex max-w-md items-center justify-center gap-2 border-t border-coral-border bg-coral-soft py-2 text-sm font-semibold text-coral sm:max-w-lg"
-      >
-        <AlertTriangle className="h-4 w-4" />
-        Red flag? Tap here for the emergency screen
-      </Link>
-
-      {/* Bottom nav */}
-      <nav className="fixed inset-x-0 bottom-0 z-30 mx-auto flex max-w-md border-t border-border bg-card sm:max-w-lg">
-        {NAV.map(({ href, label, icon: Icon, testid }) => {
-          const active = location === href;
-          return (
-            <Link
-              key={href}
-              href={href}
-              data-testid={testid}
-              className={`flex flex-1 flex-col items-center gap-1 py-2.5 text-[0.7rem] font-medium transition-colors ${
-                active ? "text-primary" : "text-muted-foreground"
-              }`}
-            >
-              <Icon className={`h-5 w-5 ${active ? "stroke-[2.4]" : ""}`} />
-              {label}
-            </Link>
-          );
-        })}
-      </nav>
+      {/* Fixed bottom stack: emergency strip sits directly above the nav */}
+      <div className="fixed inset-x-0 bottom-0 z-30 mx-auto max-w-md sm:max-w-lg">
+        <Link
+          href="/emergency"
+          data-testid="link-emergency-strip"
+          className="flex items-center justify-center gap-2 border-t border-coral-border bg-coral-soft py-2 text-sm font-semibold text-coral"
+        >
+          <AlertTriangle className="h-4 w-4" />
+          Red flag? Tap here for the emergency screen
+        </Link>
+        <nav className="flex border-t border-border bg-card pb-[env(safe-area-inset-bottom)]">
+          {NAV.map(({ href, label, icon: Icon, testid }) => {
+            const active = location === href;
+            return (
+              <Link
+                key={href}
+                href={href}
+                data-testid={testid}
+                className={`flex flex-1 flex-col items-center gap-1 py-2.5 text-[0.7rem] font-medium transition-colors ${
+                  active ? "text-primary" : "text-muted-foreground"
+                }`}
+              >
+                <Icon className={`h-5 w-5 ${active ? "stroke-[2.4]" : ""}`} />
+                {label}
+              </Link>
+            );
+          })}
+        </nav>
+      </div>
     </div>
   );
 }
