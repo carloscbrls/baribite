@@ -4,6 +4,7 @@ import {
   meals,
   restaurantPicks,
   sproutsItems,
+  mealPlanProgress,
 } from "@shared/schema";
 import type {
   User,
@@ -13,6 +14,7 @@ import type {
   InsertMeal,
   RestaurantPick,
   SproutsItem,
+  MealPlanProgress,
 } from "@shared/schema";
 import { drizzle } from "drizzle-orm/better-sqlite3";
 import Database from "better-sqlite3";
@@ -73,6 +75,15 @@ sqlite.exec(`
     allergy_notes TEXT NOT NULL DEFAULT '',
     checked INTEGER NOT NULL DEFAULT 0
   );
+  CREATE TABLE IF NOT EXISTS meal_plan_progress (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    week INTEGER NOT NULL,
+    day INTEGER NOT NULL,
+    meal_index INTEGER NOT NULL,
+    eaten INTEGER NOT NULL DEFAULT 0,
+    eaten_at TEXT
+  );
 `);
 
 export const db = drizzle(sqlite);
@@ -87,6 +98,14 @@ export interface IStorage {
   getSproutsItems(): Promise<SproutsItem[]>;
   setSproutsChecked(id: number, checked: boolean): Promise<SproutsItem | undefined>;
   addSproutsItem(item: { section: string; name: string; why: string; allergyNotes: string }): Promise<SproutsItem>;
+  getMealPlanProgress(userId: number, week: number, day: number): Promise<MealPlanProgress[]>;
+  setMealPlanProgress(
+    userId: number,
+    week: number,
+    day: number,
+    mealIndex: number,
+    eaten: boolean
+  ): Promise<MealPlanProgress>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -136,6 +155,57 @@ export class DatabaseStorage implements IStorage {
         allergyNotes: item.allergyNotes,
         checked: false,
       })
+      .returning()
+      .get();
+  }
+  async getMealPlanProgress(
+    userId: number,
+    week: number,
+    day: number
+  ): Promise<MealPlanProgress[]> {
+    return db
+      .select()
+      .from(mealPlanProgress)
+      .where(
+        and(
+          eq(mealPlanProgress.userId, userId),
+          eq(mealPlanProgress.week, week),
+          eq(mealPlanProgress.day, day)
+        )
+      )
+      .all();
+  }
+  async setMealPlanProgress(
+    userId: number,
+    week: number,
+    day: number,
+    mealIndex: number,
+    eaten: boolean
+  ): Promise<MealPlanProgress> {
+    const existing = db
+      .select()
+      .from(mealPlanProgress)
+      .where(
+        and(
+          eq(mealPlanProgress.userId, userId),
+          eq(mealPlanProgress.week, week),
+          eq(mealPlanProgress.day, day),
+          eq(mealPlanProgress.mealIndex, mealIndex)
+        )
+      )
+      .get();
+    const eatenAt = eaten ? new Date().toISOString() : null;
+    if (existing) {
+      return db
+        .update(mealPlanProgress)
+        .set({ eaten, eatenAt })
+        .where(eq(mealPlanProgress.id, existing.id))
+        .returning()
+        .get();
+    }
+    return db
+      .insert(mealPlanProgress)
+      .values({ userId, week, day, mealIndex, eaten, eatenAt })
       .returning()
       .get();
   }

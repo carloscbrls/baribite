@@ -73,5 +73,39 @@ export async function registerRoutes(
     }
   });
 
+  // ── Meal plan progress ──────────────────────────────────────────────────
+  app.get("/api/meal-plan/progress", async (req, res) => {
+    const userId = parseInt((req.query.userId as string) || "1", 10);
+    const week = parseInt((req.query.week as string) || "1", 10);
+    const day = parseInt((req.query.day as string) || "1", 10);
+    res.json(await storage.getMealPlanProgress(userId, week, day));
+  });
+
+  app.post("/api/meal-plan/check", async (req, res) => {
+    const schema = z.object({
+      userId: z.number().int().default(1),
+      week: z.number().int(),
+      day: z.number().int(),
+      mealIndex: z.number().int(),
+      eaten: z.boolean(),
+    });
+    try {
+      const data = schema.parse(req.body);
+      const row = await storage.setMealPlanProgress(
+        data.userId,
+        data.week,
+        data.day,
+        data.mealIndex,
+        data.eaten
+      );
+      res.json(row);
+    } catch (err) {
+      if (err instanceof z.ZodError) {
+        return res.status(400).json({ message: "Invalid progress", errors: err.errors });
+      }
+      throw err;
+    }
+  });
+
   return httpServer;
 }

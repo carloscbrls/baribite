@@ -81,3 +81,18 @@ export const sproutsItems = sqliteTable("sprouts_items", {
 export const insertSproutsItemSchema = createInsertSchema(sproutsItems).omit({ id: true });
 export type InsertSproutsItem = z.infer<typeof insertSproutsItemSchema>;
 export type SproutsItem = typeof sproutsItems.$inferSelect;
+
+// ── Meal plan progress (which plan meals have been checked off) ─────────────
+export const mealPlanProgress = sqliteTable("meal_plan_progress", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  userId: integer("user_id").notNull(),
+  week: integer("week").notNull(),
+  day: integer("day").notNull(), // 1-7 within the week
+  mealIndex: integer("meal_index").notNull(),
+  eaten: integer("eaten", { mode: "boolean" }).notNull().default(false),
+  eatenAt: text("eaten_at"), // ISO datetime when marked eaten
+});
+
+export const insertMealPlanProgressSchema = createInsertSchema(mealPlanProgress).omit({ id: true });
+export type InsertMealPlanProgress = z.infer<typeof insertMealPlanProgressSchema>;
+export type MealPlanProgress = typeof mealPlanProgress.$inferSelect;
