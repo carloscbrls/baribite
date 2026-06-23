@@ -321,6 +321,16 @@ function FoodCard({
       onClick={onOpen}
       data-testid={`card-food-${item.id}`}
     >
+      {item.image && (
+        <div className="-mx-4 -mt-4 mb-2 overflow-hidden rounded-t-2xl">
+          <img
+            src={item.image}
+            alt={item.name}
+            className="h-40 w-full object-cover"
+            loading="lazy"
+          />
+        </div>
+      )}
       <div className="flex items-start justify-between gap-2">
         <h3 className="text-sm font-bold leading-snug text-foreground">{item.name}</h3>
         <span className="shrink-0 rounded-full bg-muted px-2 py-0.5 text-[0.65rem] font-semibold text-muted-foreground">
@@ -373,6 +383,15 @@ function ItemDetail({
               </DialogTitle>
             </DialogHeader>
             <div className="space-y-3.5">
+              {item.image && (
+                <div className="-mx-6 -mt-4 mb-1 overflow-hidden">
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="h-48 w-full object-cover"
+                  />
+                </div>
+              )}
               <span className="inline-flex rounded-full bg-muted px-2.5 py-1 text-xs font-semibold text-muted-foreground">
                 {item.source}
               </span>

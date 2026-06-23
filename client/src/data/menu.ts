@@ -1,4 +1,5 @@
 import raw from "./menu_data.json";
+import { getFoodImage } from "./food_images";
 
 // ── Phase keys used in the data ────────────────────────────────────────────
 export type PhaseKey =
@@ -61,6 +62,7 @@ export interface FoodItem {
   order_mods: string;
   notes?: string;
   source_url?: string;
+  image?: string; // URL to food photo
   // contextual notes pulled from the parent group
   generalNotes?: string;
   peanutOilWarning?: string;
@@ -88,6 +90,7 @@ interface RawItem {
   order_mods?: string;
   notes?: string;
   source_url?: string;
+  image?: string;
 }
 
 // Map full source names → short chip labels matching the filter UI.
@@ -137,6 +140,7 @@ function toItem(
     order_mods: it.order_mods ?? "",
     notes: it.notes,
     source_url: it.source_url,
+    image: it.image ?? getFoodImage(id),
     generalNotes: extra.generalNotes,
     peanutOilWarning: extra.peanutOilWarning,
   };
