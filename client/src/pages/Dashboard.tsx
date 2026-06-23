@@ -269,10 +269,10 @@ function StatCard({
       {loading ? (
         <Skeleton className="mt-2 h-6 w-12" />
       ) : (
-        <p className="mt-1.5 text-lg font-bold leading-none text-foreground">
-          {value}
+        <p className="mt-1.5 flex items-baseline gap-1 text-lg font-bold leading-none text-foreground">
+          <span>{value}</span>
           <span className="text-xs font-medium text-muted-foreground">
-            {unit ? unit : ""}/{goal}
+            {unit} / {goal}
             {unit}
           </span>
         </p>
