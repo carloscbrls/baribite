@@ -1,12 +1,21 @@
 import { Link, useLocation } from "wouter";
-import { Home, MapPin, ShoppingBasket, HeartHandshake, AlertTriangle } from "lucide-react";
+import {
+  Home,
+  MapPin,
+  ShoppingBasket,
+  HeartHandshake,
+  AlertTriangle,
+  BookOpen,
+  CalendarDays,
+} from "lucide-react";
 import { Wordmark } from "./Logo";
 
 const NAV = [
   { href: "/", label: "Today", icon: Home, testid: "nav-today" },
+  { href: "/menu", label: "Menu", icon: BookOpen, testid: "nav-menu" },
   { href: "/where", label: "Eat out", icon: MapPin, testid: "nav-where" },
   { href: "/sprouts", label: "Sprouts", icon: ShoppingBasket, testid: "nav-sprouts" },
-  { href: "/wife", label: "Partner", icon: HeartHandshake, testid: "nav-wife" },
+  { href: "/plan", label: "Plan", icon: CalendarDays, testid: "nav-plan" },
 ];
 
 export function AppShell({
@@ -26,14 +35,29 @@ export function AppShell({
           <Link href="/" data-testid="link-home-logo">
             <Wordmark />
           </Link>
-          <Link
-            href="/emergency"
-            data-testid="link-emergency-header"
-            className="flex items-center gap-1.5 rounded-full border border-coral-border bg-coral-soft px-3 py-1.5 text-xs font-bold text-coral hover-elevate active-elevate-2"
-          >
-            <AlertTriangle className="h-3.5 w-3.5" />
-            Red flag?
-          </Link>
+          <div className="flex items-center gap-2">
+            <Link
+              href="/emergency"
+              data-testid="link-emergency-header"
+              className="flex items-center gap-1.5 rounded-full border border-coral-border bg-coral-soft px-3 py-1.5 text-xs font-bold text-coral hover-elevate active-elevate-2"
+            >
+              <AlertTriangle className="h-3.5 w-3.5" />
+              Red flag?
+            </Link>
+            <Link
+              href="/wife"
+              data-testid="nav-wife"
+              aria-label="Partner view"
+              title="Partner view"
+              className={`flex h-9 w-9 items-center justify-center rounded-full border transition-colors hover-elevate active-elevate-2 ${
+                location === "/wife"
+                  ? "border-primary bg-secondary text-primary"
+                  : "border-border bg-card text-muted-foreground"
+              }`}
+            >
+              <HeartHandshake className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
         {title ? (
           <h1 className="mt-3 text-xl font-bold tracking-tight text-foreground" data-testid="text-page-title">

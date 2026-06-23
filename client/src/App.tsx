@@ -6,6 +6,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Dashboard from "@/pages/Dashboard";
+import Menu from "@/pages/Menu";
+import Plan from "@/pages/Plan";
 import Where from "@/pages/Where";
 import Sprouts from "@/pages/Sprouts";
 import Wife from "@/pages/Wife";
@@ -15,6 +17,8 @@ function AppRouter() {
   return (
     <Switch>
       <Route path="/" component={Dashboard} />
+      <Route path="/menu" component={Menu} />
+      <Route path="/plan" component={Plan} />
       <Route path="/where" component={Where} />
       <Route path="/sprouts" component={Sprouts} />
       <Route path="/wife" component={Wife} />
