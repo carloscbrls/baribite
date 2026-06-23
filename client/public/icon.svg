@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="BariBite">
+  <rect width="512" height="512" rx="112" fill="#4a7a5c"/>
+  <!-- leaf body -->
+  <path d="M150 330 C150 214 244 142 366 142 C366 252 286 330 188 330 Z" fill="#f6f1e3"/>
+  <!-- central vein -->
+  <path d="M188 330 C226 280 300 206 366 142" fill="none" stroke="#4a7a5c" stroke-width="15" stroke-linecap="round"/>
+  <!-- spoon stem -->
+  <path d="M186 318 L186 372" fill="none" stroke="#f6f1e3" stroke-width="26" stroke-linecap="round"/>
+  <!-- spoon bowl -->
+  <ellipse cx="186" cy="392" rx="34" ry="26" fill="#f6f1e3"/>
+  <!-- coral safety accent inside spoon bowl -->
+  <circle cx="186" cy="392" r="13" fill="#ee6c4d"/>
+</svg>
