@@ -2,6 +2,11 @@ import type { Phase } from "@shared/schema";
 
 export const SURGERY_DATE = "2026-06-24"; // Wed June 24, 2026 — sleeve gastrectomy
 
+// ── Surgeon contact — update these before surgery ──
+export const SURGEON_NAME = "{{SURGEON_NAME}}";
+export const SURGEON_PHONE = "{{SURGEON_PHONE}}";
+export const CURRENT_MEDS = "{{CURRENT_MEDS}}";
+
 // Days since surgery. Day 0 = surgery day. Negative = pre-op.
 export function daysSinceSurgery(now = new Date()): number {
   const surgery = new Date(SURGERY_DATE + "T00:00:00");

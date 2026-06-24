@@ -3,7 +3,7 @@ import { Link } from "wouter";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Phone, ChevronLeft, Stethoscope, FileText } from "lucide-react";
-import { RED_FLAGS, phaseForDay, postOpDay, phaseLabel, SURGERY_DATE } from "@/lib/baribite";
+import { RED_FLAGS, phaseForDay, postOpDay, phaseLabel, SURGERY_DATE, SURGEON_NAME, SURGEON_PHONE, CURRENT_MEDS } from "@/lib/baribite";
 import type { Phase, User } from "@shared/schema";
 
 export default function Emergency() {
@@ -49,11 +49,10 @@ export default function Emergency() {
             className="h-auto flex-col gap-1 border-destructive/40 py-4 text-destructive"
             data-testid="button-call-surgeon"
           >
-            {/* Placeholder — Carlos fills in his surgeon's number */}
-            <a href="tel:+10000000000">
+            <a href={`tel:${SURGEON_PHONE}`}>
               <Stethoscope className="h-5 w-5" />
               <span className="text-base font-bold">Call surgeon</span>
-              <span className="text-[0.65rem] font-medium opacity-70">add number</span>
+              <span className="text-[0.65rem] font-medium opacity-70">Tap to call</span>
             </a>
           </Button>
         </div>
@@ -89,8 +88,8 @@ export default function Emergency() {
               value={allergies.join(", ")}
               danger
             />
-            <Row label="Surgeon" value="________________ (add)" />
-            <Row label="Current meds" value="________________ (add)" />
+            <Row label="Surgeon" value={`${SURGEON_NAME} · ${SURGEON_PHONE}`} />
+            <Row label="Current meds" value={CURRENT_MEDS} />
           </dl>
           <p className="mt-3 text-xs text-muted-foreground">
             Tip: complete the blanks before surgery so this screen is ready if you ever need it.
