@@ -124,7 +124,7 @@ export default function Dashboard() {
           <div className="flex items-center gap-2">
             <Pill className="h-4 w-4 text-primary" />
             <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-              Friday meds
+              Meds (starts Fri)
             </h2>
           </div>
           <div className="mt-2 space-y-1.5">
