@@ -14,13 +14,13 @@ export function daysSinceSurgery(now = new Date()): number {
   return Math.round((today.getTime() - surgery.getTime()) / 86400000);
 }
 
-// Post-op recovery day is 1-indexed (day of surgery is "Day 1").
+// Post-op recovery day is 0-indexed (day of surgery is Day 0, next day is Day 1).
 export function postOpDay(now = new Date()): number {
-  return daysSinceSurgery(now) + 1;
+  return daysSinceSurgery(now);
 }
 
 export function phaseForDay(phases: Phase[], day: number): Phase | undefined {
-  if (day < 1) return phases.find((p) => p.dayStart === 1);
+  if (day < 1) return phases.find((p) => p.dayStart === 0);
   return phases.find(
     (p) => day >= p.dayStart && (p.dayEnd == null || day <= p.dayEnd)
   );
@@ -30,7 +30,7 @@ export function phaseLabel(now = new Date()): string {
   const d = daysSinceSurgery(now);
   if (d < 0) return `Day ${d} · Pre-Op`;
   if (d === 0) return "Surgery Day";
-  return `Day ${d + 1}`;
+  return `Day ${d}`;
 }
 
 // The five always-visible rules.

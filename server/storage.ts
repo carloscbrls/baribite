@@ -238,8 +238,8 @@ export function seedDatabase() {
     db.insert(phases).values([
       {
         name: "Clear Liquids",
-        dayStart: 1,
-        dayEnd: 3,
+        dayStart: 0,
+        dayEnd: 2,
         texture: "Clear liquids only",
         volumePerMeal: "1 oz sips",
         proteinGoal: "Hydration first",
@@ -247,8 +247,8 @@ export function seedDatabase() {
       },
       {
         name: "Full Liquids",
-        dayStart: 4,
-        dayEnd: 14,
+        dayStart: 3,
+        dayEnd: 13,
         texture: "Full liquids",
         volumePerMeal: "2–4 oz per meal",
         proteinGoal: "60–80 g protein",
@@ -256,8 +256,8 @@ export function seedDatabase() {
       },
       {
         name: "Pureed",
-        dayStart: 15,
-        dayEnd: 28,
+        dayStart: 14,
+        dayEnd: 27,
         texture: "Smooth purees",
         volumePerMeal: "2–4 Tbsp, up to 1/4 cup",
         proteinGoal: "60–80 g protein",
@@ -265,8 +265,8 @@ export function seedDatabase() {
       },
       {
         name: "Soft Solids",
-        dayStart: 29,
-        dayEnd: 42,
+        dayStart: 28,
+        dayEnd: 41,
         texture: "Soft, moist solids",
         volumePerMeal: "1/4 to 1/2 cup",
         proteinGoal: "60–80 g protein",
@@ -274,7 +274,7 @@ export function seedDatabase() {
       },
       {
         name: "Regular Bariatric",
-        dayStart: 43,
+        dayStart: 42,
         dayEnd: null,
         texture: "Regular bariatric diet",
         volumePerMeal: "1/2 to 1 cup",

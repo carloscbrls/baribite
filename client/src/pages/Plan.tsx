@@ -134,7 +134,7 @@ export default function Plan() {
                   : "border-border bg-card text-muted-foreground"
               }`}
             >
-              {d.label.startsWith("Day") ? `Day ${i + 1}` : d.label}
+              {d.label}
             </button>
           ))}
         </div>
