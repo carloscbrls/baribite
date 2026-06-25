@@ -8,7 +8,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Droplet, Beef, UtensilsCrossed, Plus, Clock } from "lucide-react";
+import { Droplet, Beef, UtensilsCrossed, Plus, Clock, Pill } from "lucide-react";
 import {
   phaseForDay,
   postOpDay,
@@ -118,6 +118,39 @@ export default function Dashboard() {
         )}
 
         <AllergyBanner />
+
+        {/* Medication schedule */}
+        <Card className="p-4" data-testid="card-meds">
+          <div className="flex items-center gap-2">
+            <Pill className="h-4 w-4 text-primary" />
+            <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              Today's meds
+            </h2>
+          </div>
+          <div className="mt-2 space-y-1.5">
+            <div className="flex items-start gap-2.5 text-sm">
+              <span className="mt-0.5 shrink-0 rounded-md bg-secondary px-1.5 py-0.5 text-xs font-bold text-primary">6:00 AM</span>
+              <div>
+                <p className="font-semibold text-foreground">Protonix</p>
+                <p className="text-xs text-muted-foreground">Wait 30 min before eating or drinking</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-2.5 text-sm">
+              <span className="mt-0.5 shrink-0 rounded-md bg-secondary px-1.5 py-0.5 text-xs font-bold text-primary">7:00 AM</span>
+              <div>
+                <p className="font-semibold text-foreground">Calcium chew</p>
+                <p className="text-xs text-muted-foreground">Before going to work</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-2.5 text-sm">
+              <span className="mt-0.5 shrink-0 rounded-md bg-secondary px-1.5 py-0.5 text-xs font-bold text-primary">9:00 AM</span>
+              <div>
+                <p className="font-semibold text-foreground">Calcium or multivitamin</p>
+                <p className="text-xs text-muted-foreground">Second dose</p>
+              </div>
+            </div>
+          </div>
+        </Card>
 
         {/* Three stat cards */}
         <div className="grid grid-cols-3 gap-2.5">
