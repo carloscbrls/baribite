@@ -138,15 +138,26 @@ export default function Dashboard() {
             <div className="flex items-start gap-2.5 text-sm">
               <span className="mt-0.5 shrink-0 rounded-md bg-secondary px-1.5 py-0.5 text-xs font-bold text-primary">7:00 AM</span>
               <div>
-                <p className="font-semibold text-foreground">Calcium chew</p>
-                <p className="text-xs text-muted-foreground">Before going to work</p>
+                <p className="font-semibold text-foreground">Calcium</p>
+                <p className="text-xs text-muted-foreground">Chew</p>
               </div>
             </div>
             <div className="flex items-start gap-2.5 text-sm">
-              <span className="mt-0.5 shrink-0 rounded-md bg-secondary px-1.5 py-0.5 text-xs font-bold text-primary">9:00 AM</span>
+              <span className="mt-0.5 shrink-0 rounded-md bg-secondary px-1.5 py-0.5 text-xs font-bold text-primary">9:00–10:00 AM</span>
               <div>
-                <p className="font-semibold text-foreground">Calcium or multivitamin</p>
-                <p className="text-xs text-muted-foreground">Second dose</p>
+                <p className="font-semibold text-foreground">Multivitamin</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-2.5 text-sm">
+              <span className="mt-0.5 shrink-0 rounded-md bg-secondary px-1.5 py-0.5 text-xs font-bold text-primary">12:00–1:00 PM</span>
+              <div>
+                <p className="font-semibold text-foreground">Calcium</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-2.5 text-sm">
+              <span className="mt-0.5 shrink-0 rounded-md bg-secondary px-1.5 py-0.5 text-xs font-bold text-primary">Before bed</span>
+              <div>
+                <p className="font-semibold text-foreground">Calcium</p>
               </div>
             </div>
           </div>

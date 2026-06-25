@@ -5,7 +5,7 @@ export const SURGERY_DATE = "2026-06-24"; // Wed June 24, 2026 — sleeve gastre
 // ── Surgeon contact — update these before surgery ──
 export const SURGEON_NAME = "Dr. Hrishikesh Nerkar, MD";
 export const SURGEON_PHONE = "+12095727049";
-export const CURRENT_MEDS = "Protonix 6am (wait 30 min before eating/drinking) · Calcium chew 7am · Calcium or multivitamin 9am";
+export const CURRENT_MEDS = "Protonix 6am · Calcium 7am · Multivitamin 9-10am · Calcium 12-1pm · Calcium before bed";
 
 // Days since surgery. Day 0 = surgery day. Negative = pre-op.
 export function daysSinceSurgery(now = new Date()): number {
