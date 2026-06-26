@@ -121,8 +121,9 @@ function toItem(
   const phases = (it.bariatric_phase ?? []).filter(
     (p) => p !== "never_recommended"
   ) as PhaseKey[];
+  const id = `${shortLabel(source)}-${idx}-${it.name}`.replace(/\s+/g, "-").toLowerCase();
   return {
-    id: `${shortLabel(source)}-${idx}-${it.name}`.replace(/\s+/g, "-").toLowerCase(),
+    id,
     name: it.name,
     source,
     sourceShort: shortLabel(source),
